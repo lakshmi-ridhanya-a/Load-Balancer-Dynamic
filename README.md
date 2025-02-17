@@ -1,86 +1,79 @@
-# Load-Balancer-Dynamic
 # Dynamic Load Balancer for Flask Microservices
 
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue) ![Flask](https://img.shields.io/badge/flask-2.0-green)
 
 ---
 
-## Introduction
+## Overview
 
-This project implements a **Dynamic Load Balancer** using Flask to efficiently distribute incoming client requests across multiple backend servers. It employs a **least-loaded algorithm** to ensure optimal resource usage while monitoring **CPU utilization, memory consumption, and active connections** in real time.
+A **Dynamic Load Balancer** built with Flask to distribute client requests across multiple backend servers using the **least loaded algorithm**. The system ensures optimal resource utilization by tracking **CPU usage**, **memory usage**, and **active connections** in real time. 
 
-### Key Components:
-- **Load Balancer**: Directs traffic to the least burdened server and anticipates potential load spikes.
-- **Client Traffic Generator**: Simulates varying loads to evaluate system performance.
-- **Backend Servers**: Handle requests and relay real-time load metrics for intelligent routing.
+Key components:
+- **Load Balancer**: Routes requests to the least loaded server and predicts load spikes.
+- **Client Simulator**: Simulates realistic traffic with random requests.
+- **Backend Servers**: Process requests and return load metrics for dynamic routing.
 
 ---
 
 ## Features
 
-✔ **Smart Load Distribution**: Redirects requests to the server with the lightest load.
-✔ **Live Performance Tracking**: Monitors CPU, memory, and active connection statistics.
-✔ **Easily Scalable**: Allows seamless addition of new servers.
-✔ **Traffic Simulation**: Generates diverse client requests to test efficiency.
+- **Dynamic Load Balancing**: Routes traffic to the server with minimal load.
+- **Real-Time Monitoring**: Tracks CPU, memory, and active connections.
+- **Scalability**: Easily add new servers for horizontal scaling.
+- **Simulation Tools**: Generates traffic to evaluate performance and resilience.
 
 ---
 
 ## How It Works
 
-1. The **Load Balancer** periodically gathers performance metrics from each backend server.
-2. **Backend Servers** process requests while reporting system statistics.
-3. The **Client Simulator** initiates randomized **GET** and **POST** requests to create dynamic traffic.
+1. **Load Balancer** queries backend servers for load metrics and predicts future load.
+2. **Backend Servers** process requests and provide live CPU, memory, and connection data.
+3. **Client Simulator** sends randomized **GET** and **POST** requests to stress test the system.
 
 ---
 
 ## Getting Started
 
-### 1. Environment Setup
-Ensure Python 3.9+ is installed, then create and activate a virtual environment:
+### 1. Setup Environment
 ```bash
 python -m venv venv
 source venv/bin/activate      # Linux/Mac
-venv\Scripts\activate        # Windows
+venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 ```
 
-### 2. Launch Backend Servers
-Run each server on separate terminals:
+### 2. Start Backend Servers
+Start each backend server in separate terminals:
 ```bash
-python server1.py  # Runs on port 5000
-python server2.py  # Runs on port 5001
+python server1.py  # Starts on port 5000
+python server2.py  # Starts on port 5001
 ```
-Add more servers as needed.
+Repeat for additional servers.
 
-### 3. Start Load Balancer
-Execute the load balancer script:
+### 3. Run Load Balancer
+Launch the load balancer:
 ```bash
 python load-balance.py
 ```
-The balancer listens on port `8000`.
+This starts the balancer on port `8000`.
 
-### 4. Simulate Client Requests
-Generate simulated client requests:
+### 4. Simulate Clients
+Generate traffic using the client simulator:
 ```bash
 python client-sim.py
 ```
-This logs response times and server assignments.
+Logs response times and server assignments.
 
 ---
 
-## Project Directory Structure
+## Project Structure
 
 ```
 .
-├── client-sim.py        # Simulates client traffic
-├── load-balance.py      # Core load balancer logic
+├── client-sim.py        # Client simulator
+├── load-balance.py      # Load balancer
 ├── server1.py           # Backend server 1
 ├── server2.py           # Backend server 2
-├── requirements.txt     # Dependencies
+├── requirements.txt     # Python dependencies
 └── README.md            # Project documentation
 ```
-
----
-
-This setup ensures a dynamic and scalable microservice architecture capable of handling fluctuating loads efficiently.
-
